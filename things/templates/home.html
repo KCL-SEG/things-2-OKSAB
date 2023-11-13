@@ -9,3 +9,13 @@
   <p>Some stuff about things goes here.</p>
 </body>
 </html>
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Submit a New Thing</h1>
+  <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Save</button>
+  </form>
+{% endblock %}
