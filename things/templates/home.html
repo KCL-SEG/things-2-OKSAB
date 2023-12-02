@@ -1,21 +1,33 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>Things</title>
+  <script type="text/javascript">
+    function resetForm() {
+      // Resets the form after submission
+      document.getElementById("thingForm").reset();
+    }
+  </script>
 </head>
 <body>
-  <h1>
-    Things
-  </h1>
+  <h1>Things</h1>
   <p>Some stuff about things goes here.</p>
+
+  <!-- Form for adding a new Thing -->
+  <form id="ThingForm" action="#" method="post" onsubmit="resetForm()">
+    {% csrf_token %} <!-- Include CSRF token -->
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+
+    <label for="description">Description:</label><br>
+    <input type="text" id="description" name="description"><br>
+
+    <label for="quantity">Quantity:</label><br>
+    <input type="number" id="quantity" name="quantity" min="0" max="100"><br>
+
+    <input type="submit" value="Submit">
+  </form>
+
 </body>
 </html>
-{% extends "base_generic.html" %}
 
-{% block content %}
-  <h1>Submit a New Thing</h1>
-  <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Save</button>
-  </form>
-{% endblock %}
